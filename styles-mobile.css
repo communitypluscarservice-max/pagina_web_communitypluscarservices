@@ -24,13 +24,13 @@ section {
 
 /* Navigation - Mobile */
 .navbar {
-  height: 54px;
-  /* Slimmer on mobile for better screen space */
+  height: 64px;
+  /* Increased for logo space */
   padding: 0 15px;
 }
 
 .logo-img {
-  height: 40px;
+  height: 50px;
 }
 
 .hamburger {
@@ -145,9 +145,12 @@ section {
 
 /* Hero Section */
 .hero {
-  min-height: auto;
-  padding: 160px 0 100px;
-  /* Big padding */
+  height: 80vh;
+  min-height: 500px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -170,14 +173,13 @@ section {
 }
 
 .hero-title {
-  font-size: 3rem;
-  /* Emphatic mobile sizing */
+  font-size: 2.2rem;
+  line-height: 1.2;
 }
 
 .hero-description {
-  font-size: 1.3rem;
-  /* Slightly larger text */
-  margin-bottom: 40px;
+  font-size: 1.15rem;
+  margin-bottom: 30px;
 }
 
 .hero-buttons {
@@ -206,7 +208,7 @@ section {
 }
 
 .split-images {
-  height: 380px;
+  height: 420px;
   /* Scaled down representation of dual images */
   width: 100%;
 }
