@@ -1,414 +1,523 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Plus Car Services - NEMT – Non-Emergency Medical Transportation</title>
-    
-    <!-- CSS para Desktop (pantallas grandes) -->
-    <link rel="stylesheet" href="styles-desktop.css" media="screen and (min-width: 969px)">
-    
-    <!-- CSS para Mobile (pantallas pequenas) -->
-    <link rel="stylesheet" href="styles-mobile.css" media="screen and (max-width: 968px)">
-    
+    <title>Community Plus Car Services - Non-Emergency Medical Transportation</title>
+    <link rel="icon" href="static/images/favicon-5.ico" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles-desktop.css?v=2.0">
+    <link rel="stylesheet" href="styles-mobile.css?v=2.0" media="screen and (max-width: 968px)">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader">
-            <img class="logo-loader" src="static/images/Logo de inicio/logo-company.png" alt="Community Plus Logo" >
-            <div class="loading-bar"></div>
-        </div>
+    <!-- Hidden Canvas for Color Extraction -->
+    <canvas id="color-extractor-canvas" style="display:none;"></canvas>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="progressBar"></div>
     </div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
-                    <img class="logo-default" src="static/images/Logo de navegación/logo_header1.png" alt="Logo">
-                    <!-- Imagen para pantallas pequeñas -->
-                    <img class="logo-small" src="static/images/Logo de navegación/logo-company.png" alt="Logo responsive">
-                </div>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#inicio" class="nav-link">Start</a></li>
-                    <li><a href="#servicios" class="nav-link">Services</a></li>
-                    <li><a href="#faq" class="nav-link">Frequently Asked Questions</a></li>
-                    <li><a href="#contacto" class="nav-btn">Contact us!</a></li>
-                </ul>
+        <div class="container nav-container">
+            <div class="logo">
+                <img id="main-logo" class="logo-img" src="static/images/Logo de navegación/logo-company.png"
+                    alt="Community Plus Car Services Logo">
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link" data-en="Home" data-es="Inicio">Home</a></li>
+                <li><a href="#about" class="nav-link" data-en="About Us" data-es="Quiénes Somos">About Us</a></li>
+                <li><a href="#services" class="nav-link" data-en="Services" data-es="Servicios">Services</a></li>
+                <li><a href="#partners" class="nav-link" data-en="Insurance" data-es="Aseguradoras">Insurance</a></li>
+                <li><a href="#contact" class="nav-btn" data-en="Contact Us" data-es="Contacto">Contact Us</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="lang-toggle" class="lang-btn" aria-label="Toggle Language">
+                    <span class="lang-icon">🌐</span> <span id="current-lang">EN</span>
+                </button>
                 <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span></span><span></span><span></span>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-slider">
-            <div class="hero-slide active" style="background-image:url('static/images/banner/BannerEstimados.png');">
-                <div class="container">
-                    <div class="hero-content">
-                        <span class="hero-label">Community</span>
-                        <h1 class="hero-title">Professional and <br> reliable</h1>
-                        <p class="hero-description">Safe & Reliable Medical Transportation</p>
-                        <div class="hero-buttons">
-                            <a href="#servicios" class="btn btn-primary">Our Services</a>
-                            <a href="#contacto" class="btn btn-secondary">Contact us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-slide" style="background-image:url('static/images/banner/BannerRedes.png');">
-                <div class="container">
-                    <div class="hero-content">
-                        <span class="hero-label">Community</span>
-                        <h1 class="hero-title">CARING TRANSPORTATION YOU CAN TRUST</h1>
-                        <p class="hero-description">Door-to-Door Medical Service</p>
-                        <div class="hero-buttons">
-                            <a href="#servicios" class="btn btn-primary">Learn More</a>
-                            <a href="#contacto" class="btn btn-secondary">Schedule a Call</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-slide" style="background-image:url('static/images/banner/BannerWeb.png');">
-                <div class="container">
-                    <div class="hero-content">
-                        <span class="hero-label">Community</span>
-                        <h1 class="hero-title">NON-EMERGENCY MEDICAL TRANSPORTATION</h1>
-                        <p class="hero-description">Safe • On Time • Door to Door</p>
-                        <div class="hero-buttons">
-                            <a href="#servicios" class="btn btn-primary">Learn More</a>
-                            <a href="#contacto" class="btn btn-secondary">Schedule a Call</a>
-                        </div>
-                    </div>
+    <section class="hero" id="home">
+        <div class="hero-slider" id="heroSlider">
+            <div class="hero-bg slide active hero-bg-1"></div>
+            <div class="hero-bg slide hero-bg-2"></div>
+            <div class="hero-bg slide hero-bg-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title"
+                    data-en="We don't just transport people — we transport care, dignity, and peace of mind."
+                    data-es="No solo transportamos personas — transportamos cuidado, dignidad y tranquilidad.">We don't
+                    just transport people — we transport care, dignity, and peace of mind.</h1>
+                <p class="hero-description"
+                    data-en="Professional Non-Emergency Medical Transportation in New York & Surrounding Areas"
+                    data-es="Transporte Médico No De Emergencia Profesional en Nueva York y Alrededores">Professional
+                    Non-Emergency Medical Transportation in New York & Surrounding Areas</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary btn-large" data-en="Request a Ride"
+                        data-es="Solicitar Servicio">Request a Ride</a>
+                    <a href="#services" class="btn btn-secondary btn-large" data-en="Our Services"
+                        data-es="Nuestros Servicios">Our Services</a>
                 </div>
             </div>
         </div>
-        <div class="hero-indicators">
-            <span class="indicator active" data-slide="0"></span>
-            <span class="indicator" data-slide="1"></span>
-            <span class="indicator" data-slide="2"></span>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-badge" data-en="Who We Are" data-es="Quiénes Somos">Who We Are</div>
+            <h2 class="section-title" data-en="A Bridge to Your Well-being" data-es="Un Puente hacia tu Bienestar">A
+                Bridge to Your Well-being</h2>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-heartbeat about-icon"></i>
+                    <h3 data-en="Our Mission" data-es="Nuestra Misión">Our Mission</h3>
+                    <p data-en="To provide highly specialized, safe, punctual, and compassionate ground transportation services. We focus on patients and individuals requiring specialized care—due to health conditions, reduced mobility, or advanced age—with a total commitment to their comfort, dignity, and safety."
+                        data-es="Proporcionar servicios de transporte terrestre altamente especializados, seguros, puntuales y compasivos. Nos enfocamos en pacientes y personas que requieren atención especializada (por condiciones de salud, movilidad reducida o edad avanzada) con un compromiso total hacia su comodidad, dignidad y seguridad.">
+                        To provide highly specialized, safe, punctual, and compassionate ground transportation services.
+                        We focus on patients and individuals requiring specialized care—due to health conditions,
+                        reduced mobility, or advanced age—with a total commitment to their comfort, dignity, and safety.
+                    </p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-eye about-icon"></i>
+                    <h3 data-en="Our Vision" data-es="Nuestra Visión">Our Vision</h3>
+                    <p data-en="To be the leading and most innovative specialized transportation provider in NYC. We aspire to transform the concept of assisted transportation into a dignified, humane, and professional experience."
+                        data-es="Ser el proveedor de transporte especializado líder y más innovador en NYC. Aspiramos a transformar el concepto de transporte asistido en una experiencia digna, humana y profesional.">
+                        To be the leading and most innovative specialized transportation provider in NYC. We aspire to
+                        transform the concept of assisted transportation into a dignified, humane, and professional
+                        experience.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-hands-helping about-icon"></i>
+                    <h3 data-en="Human Empathy" data-es="Empatía Humana">Human Empathy</h3>
+                    <p data-en="Our approach is people-centered. Every journey is an opportunity to demonstrate that transportation can also be an act of care. We treat all users with respect and kindness."
+                        data-es="Nuestro enfoque está centrado en las personas. Cada viaje es una oportunidad para demostrar que el transporte también puede ser un acto de cuidado. Tratamos a todos los usuarios con respeto y amabilidad.">
+                        Our approach is people-centered. Every journey is an opportunity to demonstrate that
+                        transportation can also be an act of care. We treat all users with respect and kindness.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services-section" id="servicios">
+    <section class="services-section bg-light" id="services">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Community</span>
-                <h2 class="section-title">Types Of Services</h2>
-            </div>
+            <div class="section-badge" data-en="What We Do" data-es="Qué Hacemos">What We Do</div>
+            <h2 class="section-title" data-en="Non-Emergency Medical Transportation (NEMT)"
+                data-es="Transporte Médico No De Emergencia (NEMT)">Non-Emergency Medical Transportation (NEMT)</h2>
+
             <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" style="background-image: url('static/images/card/1.png');">
-                    <div class="service-icon">
-                        <i class="fas fa-hospital"></i>
+                <div class="service-v2-card">
+                    <div class="service-img" style="background-image: url('static/images/card/service_door.png');">
                     </div>
-                    <h3 class="service-title">Safe and Scheduled Transfers</h3>
-                    <p class="service-description">We provide non-emergency medical transportation for patients who need safe, reliable, and timely access to medical appointments, treatments, and procedures.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100" style="background-image: url('static/images/card/2.png');">
-                    <div class="service-icon">
-                        <i class="fas fa-stethoscope"></i>
-                    </div>
-                    <h3 class="service-title">Personalized Assistance and Care</h3>
-                    <p class="service-description">We ensure full door-to-door support, assisting patients from pickup to drop-off while maintaining comfort, dignity, and respect throughout the journey.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200" style="background-image: url('static/images/card/3.png');">
-                    <div class="service-icon">
-                        <i class="fas fa-first-aid"></i>
-                    </div>
-                    <h3 class="service-title">Fully Equipped and Accessible Vehicles</h3>
-                    <p class="service-description">Our vehicles are specially equipped to accommodate wheelchairs and mobility aids, ensuring stability, safety, and comfort during transportation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="process-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Community</span>
-                <h2 class="section-title">services</h2>
-            </div>
-            <div class="process-timeline">
-                <div class="process-step" data-aos="fade-right">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Commitment to Medical Schedules</h3>
-                        <p class="step-description">We understand the importance of punctuality in healthcare. Our team carefully plans each trip to ensure patients arrive on time for their appointments.</p>
+                    <div class="service-info">
+                        <h3 data-en="Door-to-Door Transportation" data-es="Transporte Puerta a Puerta">Door-to-Door
+                            Transportation</h3>
+                        <p data-en="Safe, reliable, and timely access to medical appointments, treatments, hospitals, and clinics. We ensure complete accompaniment."
+                            data-es="Acceso seguro, confiable y puntual a citas médicas, tratamientos, hospitales y clínicas. Aseguramos acompañamiento completo.">
+                            Safe, reliable, and timely access to medical appointments, treatments, hospitals, and
+                            clinics. We ensure complete accompaniment.</p>
                     </div>
                 </div>
-                <div class="process-connector"></div>
-                <div class="process-step" data-aos="fade-up">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Compassion, Respect, and Professionalism</h3>
-                        <p class="step-description">We specialize in serving seniors and patients who require extra care, providing attentive and respectful assistance during every trip.</p>
+                <div class="service-v2-card">
+                    <div class="service-img" style="background-image: url('static/images/card/service_wheel.png');">
+                    </div>
+                    <div class="service-info">
+                        <h3 data-en="Wheelchair & Stretcher Transport"
+                            data-es="Transporte en Silla de Ruedas y Camilla">Wheelchair & Stretcher Transport</h3>
+                        <p data-en="Fully equipped, accessible vehicles designed to accommodate wheelchairs and mobility aids comfortably and safely."
+                            data-es="Vehículos accesibles y totalmente equipados diseñados para acomodar sillas de ruedas y ayudas de movilidad de forma cómoda y segura.">
+                            Fully equipped, accessible vehicles designed to accommodate wheelchairs and mobility aids
+                            comfortably and safely.</p>
                     </div>
                 </div>
-                <div class="process-connector"></div>
-                <div class="process-step" data-aos="fade-left">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Coordination with Healthcare Providers</h3>
-                        <p class="step-description">We transport patients to hospitals, clinics, dialysis centers, physical therapy locations, and other medical facilities with clear and efficient coordination.</p>
+                <div class="service-v2-card">
+                    <div class="service-img" style="background-image: url('static/images/card/service_comp.png');">
                     </div>
-                </div>
-            </div>
-            <div class="cta-center">
-                <a href="#contacto" class="btn btn-primary">Contact us!</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Media Section -->
-    <section class="social-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Community</span>
-                <h2 class="section-title">Safety and Compliance</h2>
-            </div>
-            <div class="social-grid">
-                <div class="social-content" data-aos="fade-right">
-                    <div class="social-item">
-                        <h3 class="social-subtitle">Commitment to human dignity</h3>
-                        <p class="social-text">We firmly believe in the intrinsic value of every person. 
-                            That's why we treat all our users with respect, kindness, and personalized attention, 
-                            regardless of their physical condition, age, or social situation. We strive to be an extension of the care that every person deserves.</p>
-                    </div>
-                    <div class="social-item">
-                        <h3 class="social-subtitle">Clear Documentation and Reliable Reporting</h3>
-                        <p class="social-text">We operate under strict compliance guidelines, providing accurate documentation and reliable reporting for insurance providers and Medicaid programs.</p>
-                    </div>
-                    <div class="social-item">
-                        <h3 class="social-subtitle">Excellence and professionalism</h3>
-                        <p class="social-text">We strive to offer the highest quality service for every transfer. This means punctuality, safety, 
-                            operational efficiency, and friendly, professional customer service, 
-                            supported by rigorous processes and highly trained staff.</p>
-                    </div>
-                </div>
-                <div class="social-images" data-aos="fade-left">
-                    <div>
-                        <img src="static/images/Hero section/Redes_300x550_1.png" class="social-img-card"> 
-                    </div>
-                    <div>
-                        <img src="static/images/Hero section/Redes_300x550_2.png " class="social-img-card">
+                    <div class="service-info">
+                        <h3 data-en="Companion-Friendly Rides" data-es="Viajes Amigables para Acompañantes">
+                            Companion-Friendly Rides</h3>
+                        <p data-en="We welcome family members and caregivers to ride along, ensuring peace of mind for seniors and patients requiring extra care."
+                            data-es="Damos la bienvenida a familiares y cuidadores para que viajen juntos, asegurando tranquilidad para adultos mayores y pacientes que requieren cuidado extra.">
+                            We welcome family members and caregivers to ride along, ensuring peace of mind for seniors
+                            and patients requiring extra care.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Web Development Section -->
-    <section class="web-section">
+    <!-- Our Fleet Section -->
+    <section class="fleet-section" id="fleet">
+        <div class="container text-center">
+            <div class="section-badge" data-en="Our Vehicles" data-es="Nuestros Vehículos">Our Vehicles</div>
+            <h2 class="section-title" data-en="Safe, Accessible, and Comfortable"
+                data-es="Seguros, Accesibles y Cómodos">Safe, Accessible, and Comfortable</h2>
+            <p class="section-subtitle" style="max-width: 800px; margin: 0 auto 3rem;"
+                data-en="Our modern fleet is fully equipped to handle wheelchairs and stretchers with ADA-compliant lifts and climate control for a smooth ride."
+                data-es="Nuestra flota moderna está totalmente equipada para acomodar sillas de ruedas y camillas con elevadores ADA y control de clima.">
+                Our modern fleet is fully equipped to handle wheelchairs and stretchers with ADA-compliant lifts and
+                climate control for a smooth ride.</p>
+
+            <div class="fleet-grid">
+                <div class="fleet-card">
+                    <img src="static/images/card/van_real.png" alt="Wheelchair Accessible Van" class="fleet-img">
+                    <h4 data-en="Wheelchair Vans" data-es="Vans para Sillas de Ruedas">Wheelchair Vans</h4>
+                </div>
+                <div class="fleet-card">
+                    <img src="static/images/card/sedan_real.png" alt="Ambulatory Vehicles" class="fleet-img">
+                    <h4 data-en="Ambulatory Sedans" data-es="Sedanes Ambulatorios">Ambulatory Sedans</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us-section" id="why-choose-us">
         <div class="container">
-            <div class="web-grid">
-                <div class="web-content" data-aos="fade-right">
-                    <span class="section-label">Community</span>
-                    <h2 class="section-title">Who we are</h2>
-                    <div class="web-features">
-                        <div class="web-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-star"></i>
+            <div class="split-layout">
+                <div class="split-content">
+                    <div class="section-badge" data-en="Why Choose Us" data-es="Por Qué Elegirnos">Why Choose Us</div>
+                    <h2 class="section-title text-left" data-en="Excellence in Every Ride"
+                        data-es="Excelencia en Cada Viaje">Excellence in Every Ride</h2>
+
+                    <ul class="feature-list">
+                        <li>
+                            <i class="fas fa-user-md"></i>
+                            <div>
+                                <h4 data-en="Trained Professionals" data-es="Profesionales Capacitados">Trained
+                                    Professionals</h4>
+                                <p data-en="Drivers specialized in senior care and medical mobility protocols."
+                                    data-es="Conductores especializados en atención a adultos mayores y protocolos de movilidad médica.">
+                                    Drivers specialized in senior care and medical mobility protocols.</p>
                             </div>
-                            <div class="feature-content">
-                                <h3 class="feature-title">MISSION</h3>
-                                <p class="feature-description">Our company views transportation not just as a means of getting around, but as a vital bridge between people and 
-                                    their well-being. Our mission is to provide highly specialized, safe, punctual, and compassionate ground transportation services designed to 
-                                    meet the needs of patients and the general public in New York City and the surrounding areas. We focus particularly on those who require 
-                                    specialized care, whether due to health conditions, reduced mobility, advanced age, or other specific circumstances, with a total commitment 
-                                    to their comfort, dignity, and safety on every journey.</p>
+                        </li>
+                        <li>
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4 data-en="Top-Tier Safety" data-es="Seguridad de Primer Nivel">Top-Tier Safety</h4>
+                                <p data-en="Rigorous vehicle maintenance and secure fastening systems for wheelchairs."
+                                    data-es="Mantenimiento riguroso de vehículos y sistemas de sujeción seguros para sillas de ruedas.">
+                                    Rigorous vehicle maintenance and secure fastening systems for wheelchairs.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4 data-en="Reliable Punctuality" data-es="Puntualidad Confiable">Reliable Punctuality
+                                </h4>
+                                <p data-en="We understand medical schedules are critical. We promise on-time arrivals."
+                                    data-es="Entendemos que los horarios médicos son críticos. Prometemos llegadas a tiempo.">
+                                    We understand medical schedules are critical. We promise on-time arrivals.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="split-images">
+                    <img src="static/images/Hero section/Redes_300x550_1.png" alt="Driver assisting senior"
+                        class="split-img img-back">
+                    <img src="static/images/Hero section/Redes_300x550_2.png" alt="Patient in wheelchair"
+                        class="split-img img-front">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section bg-light" id="testimonials">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-badge" data-en="Reviews" data-es="Reseñas">Reviews</div>
+                <h2 class="section-title" data-en="What Families Say" data-es="Lo que dicen nuestras familias">What
+                    Families Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="quote"
+                        data-en="&quot;They transported my elderly mother to her dialysis appointments for months. The drivers are always so patient and kind. It gave me such peace of mind.&quot;"
+                        data-es="&quot;Transportaron a mi anciana madre a sus citas de diálisis durante meses. Los conductores siempre son tan pacientes y amables. Me dio mucha tranquilidad.&quot;">
+                        "They transported my elderly mother to her dialysis appointments for months. The drivers are
+                        always so patient and kind. It gave me such peace of mind."</p>
+                    <div class="author">- Sarah L., Brooklyn NY</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="quote"
+                        data-en="&quot;Professionalism at its finest. The wheelchair van was spotless, and the driver helped us from our living room all the way into the doctor's office.&quot;"
+                        data-es="&quot;Profesionalismo en su máxima expresión. La van de sillas de ruedas estaba impecable, y el conductor nos ayudó desde nuestra sala de estar hasta el consultorio del médico.&quot;">
+                        "Professionalism at its finest. The wheelchair van was spotless, and the driver helped us from
+                        our living room all the way into the doctor's office."</p>
+                    <div class="author">- Michael T., Queens NY</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="quote"
+                        data-en="&quot;Punctual and extremely safe. We’ve used several NEMT services before, but Community Plus is by far the most reliable one we’ve found in the city.&quot;"
+                        data-es="&quot;Puntual y extremadamente seguro. Hemos usado varios servicios NEMT antes, pero Community Plus es el más confiable que hemos encontrado.&quot;">
+                        "Punctual and extremely safe. We’ve used several NEMT services before, but Community Plus is by
+                        far the most reliable one we’ve found in the city."</p>
+                    <div class="author">- David &amp; Elena R., Manhattan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance & Partners -->
+    <section class="partners-section bg-light" id="partners">
+        <div class="container text-center">
+            <div class="section-badge" data-en="B2B & Insurance" data-es="B2B y Aseguradoras">B2B & Insurance</div>
+            <h2 class="section-title" data-en="A Trusted Partner for Healthcare Providers"
+                data-es="Un Aliado Confiable para Proveedores de Salud">A Trusted Partner for Healthcare Providers</h2>
+            <p class="section-subtitle"
+                data-en="We collaborate with insurance providers, hospitals, and medical facilities to offer reliable, scalable, and compliant transport solutions."
+                data-es="Colaboramos con aseguradoras, hospitales y centros médicos para ofrecer soluciones de transporte confiables, escalables y en cumplimiento normativo.">
+                We collaborate with insurance providers, hospitals, and medical facilities to offer reliable, scalable,
+                and compliant transport solutions.</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h4 data-en="Seamless Billing" data-es="Facturación Integrada">Seamless Billing</h4>
+                    <p data-en="Accurate documentations and reliable reporting for Medicaid and insurance providers."
+                        data-es="Documentación precisa y reportes confiables para Medicaid y proveedores de seguros.">
+                        Accurate documentations and reliable reporting for Medicaid and insurance providers.</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-network-wired"></i>
+                    <h4 data-en="Operational Scalability" data-es="Escalabilidad Operativa">Operational Scalability</h4>
+                    <p data-en="Capable of handling high-volume daily scheduled trips with precision."
+                        data-es="Capaces de manejar un alto volumen de viajes programados diarios con precisión.">
+                        Capable of handling high-volume daily scheduled trips with precision.</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h4 data-en="100% Compliant" data-es="100% en Cumplimiento">100% Compliant</h4>
+                    <p data-en="Adhering to strict local and state health transportation regulations."
+                        data-es="Adheridos a estrictas regulaciones locales y estatales de transporte de salud.">
+                        Adhering to strict local and state health transportation regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community & Sustainability -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-banner">
+                <div class="community-text">
+                    <h2 data-en="Community First, Sustainable Future" data-es="Comunidad Primero, Futuro Sostenible">
+                        Community First, Sustainable Future</h2>
+                    <p data-en="We believe in social impact. We are committed to inclusive mobility for all and are actively developing a vision for an eco-efficient fleet to protect the environment while caring for our patients."
+                        data-es="Creemos en el impacto social. Estamos comprometidos con la movilidad inclusiva para todos y desarrollamos activamente una visión para una flota ecoeficiente, protegiendo el medio ambiente mientras cuidamos a nuestros pacientes.">
+                        We believe in social impact. We are committed to inclusive mobility for all and are actively
+                        developing a vision for an eco-efficient fleet to protect the environment while caring for our
+                        patients.</p>
+                </div>
+                <div class="community-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & Service Areas Section -->
+    <section class="faq-area-section bg-light" id="faq-areas">
+        <div class="container">
+            <div class="split-layout">
+                <!-- FAQs -->
+                <div class="faq-content">
+                    <div class="section-badge" data-en="FAQs" data-es="Preguntas Frecuentes">FAQs</div>
+                    <h2 class="section-title text-left" data-en="Common Questions" data-es="Preguntas Comunes">Common
+                        Questions</h2>
+
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                <span data-en="How far in advance should I book a ride?"
+                                    data-es="¿Con cuánto tiempo de anticipación debo reservar?">How far in advance
+                                    should I book a ride?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p data-en="We recommend booking at least 24 to 48 hours in advance to guarantee availability, though we do our best to accommodate same-day requests."
+                                    data-es="Recomendamos reservar con al menos 24 a 48 horas de anticipación para garantizar disponibilidad, aunque hacemos nuestro mejor esfuerzo para acomodar solicitudes el mismo día.">
+                                    We recommend booking at least 24 to 48 hours in advance to guarantee availability,
+                                    though we do our best to accommodate same-day requests.</p>
                             </div>
                         </div>
-                        <div class="web-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3 class="feature-title">VISION</h3>
-                                <p class="feature-description">Our vision is to position ourselves as the leading and most innovative company in the
-                                    area of ​​specialized ground transportation for patients and the general public in
-                                    New York City and the surrounding area. We aspire to be
-                                    recognized not only for the quality and reliability of our services, but also
-                                    for our ability to transform the concept of assisted transportation
-                                    into a dignified, humane, and professional experience.</p>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                <span data-en="Do your drivers assist passengers into the building?"
+                                    data-es="¿Sus conductores ayudan a los pasajeros a entrar al edificio?">Do your
+                                    drivers assist passengers into the building?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p data-en="Yes, absolutely. We provide 'Door-through-Door' service, meaning our drivers will assist you from inside your home all the way into your medical destination."
+                                    data-es="Sí, absolutamente. Brindamos servicio 'Puerta a Puerta', lo que significa que nuestros conductores lo ayudarán desde dentro de su hogar hasta su destino médico.">
+                                    Yes, absolutely. We provide 'Door-through-Door' service, meaning our drivers will
+                                    assist you from inside your home all the way into your medical destination.</p>
                             </div>
                         </div>
-                        <div class="web-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3 class="feature-title">Empathy and human service</h3>
-                                <p class="feature-description">Our approach is people-centered. We listen to, understand, and respond to the emotional and physical 
-                                    needs of our users. Every journey is an opportunity to demonstrate that transportation can also be an act of care.</p>
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                <span data-en="Can a family member ride along?"
+                                    data-es="¿Puede viajar un familiar acompañante?">Can a family member ride
+                                    along?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <p data-en="Yes! We welcome family members or caregivers to ride along at no extra charge. Just let us know when booking so we ensure enough seating."
+                                    data-es="¡Sí! Damos la bienvenida a familiares o cuidadores para que viajen acompañando sin cargo adicional. Solo avísenos al reservar para asegurar asientos suficientes.">
+                                    Yes! We welcome family members or caregivers to ride along at no extra charge. Just
+                                    let us know when booking so we ensure enough seating.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="web-image" data-aos="fade-left">
-                    <div class="web-card">
-                        <div class="web-overlay">
-                            <p class="web-overlay-text">La mejor opcion para crear tu website</p>
-                        </div>
-                        <i class="fas fa-desktop"></i>
+
+                <!-- Service Areas -->
+                <div class="areas-content">
+                    <div class="areas-box">
+                        <i class="fas fa-map-marked-alt areas-icon"></i>
+                        <h3 data-en="Our Service Areas" data-es="Nuestras Zonas de Servicio">Our Service Areas</h3>
+                        <p data-en="We proudly provide NEMT transportation across the following regions:"
+                            data-es="Viajamos con orgullo para brindar atención NEMT en las siguientes regiones:">We
+                            proudly provide NEMT transportation across the following regions:</p>
+                        <ul class="areas-list">
+                            <li><i class="fas fa-check-circle"></i> Manhattan</li>
+                            <li><i class="fas fa-check-circle"></i> Brooklyn</li>
+                            <li><i class="fas fa-check-circle"></i> Queens</li>
+                            <li><i class="fas fa-check-circle"></i> The Bronx</li>
+                            <li><i class="fas fa-check-circle"></i> Staten Island</li>
+                            <li><i class="fas fa-check-circle"></i> Long Island & Westchester (Select)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
+    <!-- Contact Form Section -->
+    <section class="contact-section" id="contact">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">Community</span>
-                <h2 class="section-title">Preguntas Frecuentes</h2>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item" data-aos="fade-up">
-                    <button class="faq-question">
-                        <span>Que servicios ofrece Community?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Ofrecemos soluciones integrales que incluyen publicidad, marketing digital, manejo de redes sociales, desarrollo de paginas web, estimados, suplementos, y gestion de procesos con aseguradoras, especialmente para empresas en la industria de la construccion en los Estados Unidos.</p>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <button class="faq-question">
-                        <span>Redactan documentos para presentar a la aseguradora durante un proceso de reclamacion?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Si, nos especializamos en la redaccion de documentos detallados y profesionales para presentar ante aseguradoras durante procesos de reclamacion, asegurando que toda la documentacion necesaria este completa y bien fundamentada.</p>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <button class="faq-question">
-                        <span>Que beneficios aporta el manejo de redes sociales con ustedes?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Mejoramos tu presencia digital, aumentamos el engagement con tu audiencia, generamos contenido relevante y estrategico, y analizamos metricas para optimizar continuamente tu estrategia de redes sociales.</p>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <button class="faq-question">
-                        <span>Que incluye el desarrollo web que ofrecen?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Incluye diseno web profesional, desarrollo responsive, optimizacion SEO, integracion de sistemas, seguridad web, y mantenimiento continuo para asegurar que tu sitio funcione de manera optima.</p>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
-                    <button class="faq-question">
-                        <span>Como pueden ayudarme con los estimados y suplementos?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Preparamos estimados detallados y precisos, gestionamos suplementos cuando surgen costos adicionales, y nos aseguramos de que recibas una compensacion justa por todos los trabajos realizados.</p>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
-                    <button class="faq-question">
-                        <span>Que incluye el servicio de diseno grafico que ofrecen?</span>
-                        <i class="fas fa-plus faq-icon"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Ofrecemos diseno de identidad corporativa, creacion de logos, material publicitario, diseno para redes sociales, y cualquier elemento grafico que tu negocio necesite para destacar visualmente.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="contact-card">
+                <div class="contact-info-col">
+                    <h2 data-en="We are here for you" data-es="Estamos aquí para ti">We are here for you</h2>
+                    <p data-en="Reach out to request a ride, ask about insurance partnerships, or learn more about our NEMT services."
+                        data-es="Comunícate para solicitar un servicio, preguntar sobre alianzas con aseguradoras, o aprender más sobre nuestros servicios NEMT.">
+                        Reach out to request a ride, ask about insurance partnerships, or learn more about our NEMT
+                        services.</p>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <div class="cta-text">
-                    <h2 class="cta-title">Contactanos para ayudarte a crecer!</h2>
-                    <p class="cta-description">Soluciones personalizadas disenadas para impulsar el crecimiento de tu negocio.</p>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <strong data-en="Call Us" data-es="Llámanos">Call Us</strong>
+                                <br /> <a href="tel:+1234567890">+1 (234) 567-890</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong data-en="Service Area" data-es="Área de Servicio">Service Area</strong>
+                                <br /> <span data-en="New York City & Surrounds"
+                                    data-es="Ciudad de Nueva York y Alrededores">New York City & Surrounds</span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong data-en="Email" data-es="Correo">Email</strong>
+                                <br /> <a href="mailto:info@communitypluscar.com">info@communitypluscar.com</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <a href="#contacto" class="btn btn-primary">Contact us!</a>
+                <div class="contact-form-col">
+                    <form class="actual-form">
+                        <div class="form-group">
+                            <label for="name" data-en="Full Name" data-es="Nombre Completo">Full Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" data-en="Phone Number" data-es="Número de Teléfono">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="(123) 456-7890" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service" data-en="Service Needed" data-es="Servicio Solicitado">Service
+                                Needed</label>
+                            <select id="service" required>
+                                <option value="" disabled selected data-en="Select an option"
+                                    data-es="Seleccione una opción">Select an option...</option>
+                                <option value="wheelchair" data-en="Wheelchair Transport"
+                                    data-es="Transporte en Silla de Ruedas">Wheelchair Transport</option>
+                                <option value="stretcher" data-en="Stretcher Transport" data-es="Transporte en Camilla">
+                                    Stretcher Transport</option>
+                                <option value="ambulatory" data-en="Ambulatory / Door-to-Door"
+                                    data-es="Ambulatorio / Puerta a Puerta">Ambulatory / Door-to-Door</option>
+                                <option value="insurance" data-en="Insurance/B2B Inquiry"
+                                    data-es="Consulta B2B / Aseguradoras">Insurance/B2B Inquiry</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-en="Submit Request"
+                            data-es="Enviar Solicitud">Submit Request</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contacto">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <svg viewBox="0 0 200 80" class="logo-svg">
-                            <text x="10" y="60" class="logo-main">Community</text>
-                        </svg>
-                    </div>
-                    <p class="footer-description">Entendiendo las necesidades unicas de tu compania!</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com" target="_blank" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">Links de interes</h3>
-                    <ul class="footer-links">
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#faq">FAQ's</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">Contacto</h3>
-                    <ul class="contact-info">
-                        <li>
-                            <i class="far fa-clock"></i>
-                            <span>Lunes-Sabado: 8AM - 6PM</span>
-                        </li>
-                        <li>
-                            <i class="far fa-envelope"></i>
-                            <a href="mailto:info@xapcon.com">info@Community.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+1234567890">+1 (234) 567-890</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Community Plus Car Services. Todos los derechos reservados.</p>
-            </div>
+    <footer class="footer">
+        <div class="container text-center">
+            <h3 class="footer-brand">Community Plus Car Services</h3>
+            <p class="footer-tagline" data-en="Your reliable partner in non-emergency medical transportation."
+                data-es="Tu aliado confiable en transporte médico no de emergencia.">Your reliable partner in
+                non-emergency medical transportation.</p>
+            <p class="copyright">&copy; 2026 Community Plus Car Services. <span data-en="All rights reserved."
+                    data-es="Todos los derechos reservados.">All rights reserved.</span></p>
         </div>
     </footer>
 
-    <!-- Floating Action Buttons -->
-    <div class="floating-buttons">
-        <a href="#inicio" class="fab-btn fab-scroll" id="scrollTop">
-            <i class="fas fa-arrow-up"></i>
-        </a>
-        <a href="tel:+1234567890" class="fab-btn fab-phone">
-            <i class="fas fa-phone"></i>
-        </a>
-        <a href="https://wa.me/1234567890" target="_blank" class="fab-btn fab-whatsapp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/1234567890" class="fab-whatsapp" aria-label="WhatsApp Contact">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="script.js?v=2.0"></script>
 </body>
+
 </html>
