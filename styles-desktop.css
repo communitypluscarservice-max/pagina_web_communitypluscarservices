@@ -502,6 +502,12 @@ section {
     max-width: 900px;
     position: relative;
     z-index: 2;
+    display: none;
+    /* Hidden by default */
+}
+
+.hero-content.active {
+    display: block;
     animation: fadeUp 1s ease forwards;
 }
 

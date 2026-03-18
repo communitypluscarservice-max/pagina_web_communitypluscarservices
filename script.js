@@ -262,13 +262,22 @@ function isColorDifferent(col1, col2) {
 // --- HERO SLIDER ANIMATION ---
 function initHeroSlider() {
     const slides = document.querySelectorAll('.hero-bg.slide');
+    const contents = document.querySelectorAll('.hero-content');
     if (slides.length === 0) return;
 
     let currentSlide = 0;
 
     setInterval(() => {
         slides[currentSlide].classList.remove('active');
+        if (contents[currentSlide]) {
+            contents[currentSlide].classList.remove('active');
+        }
+        
         currentSlide = (currentSlide + 1) % slides.length;
+        
         slides[currentSlide].classList.add('active');
+        if (contents[currentSlide]) {
+            contents[currentSlide].classList.add('active');
+        }
     }, 5000); // Change every 5 seconds
 }
