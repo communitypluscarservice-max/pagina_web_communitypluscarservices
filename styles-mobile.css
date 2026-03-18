@@ -29,6 +29,10 @@ section {
   padding: 0 15px;
 }
 
+.navbar .nav-container {
+  padding: 0;
+}
+
 .logo-img {
   height: 50px;
 }
@@ -140,7 +144,7 @@ section {
 }
 
 .nav-actions {
-  margin-right: 16px;
+  margin-right: 0;
 }
 
 /* Hero Section */
